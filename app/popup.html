@@ -13,31 +13,55 @@
     <!-- endbuild -->
 </head>
 
-<body>
+<body ng-app="popup">
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
-    <div class="row">
-        <form>
-        <progress class="progress" value="50" max="100" aria-describedby="example-caption-1"></progress>
-        <div class="col-md-12">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." tabindex="-1">
-                <span class="input-group-btn">
-                <button class="btn btn-secondary" type="submit">Sometimes "like"</button>
-                <button class="btn btn-secondary" id="increase-frequency" type="button">+</button>
-                <button class="btn btn-secondary" id="decrease-frequency" type="button">-</button>
-                </span>
+    <form ng-submit="submitFriend()" ng-controller="PopupCtrl">
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" tabindex="-1" ng-checked="friend.posts" ng-click="friend.posts = true">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Posts</span>
+                </label>
+                <label class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" tabindex="-1" ng-checked="friend.comments" ng-click="friend.comments = true">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Comments</span>
+                </label>
+                <select class="custom-select" tabindex="-1" ng-model="friend.frequency">
+                    <option selected>Frequency</option>
+                    <option value="1">Every</option>
+                    <option value="2">Every 2nd</option>
+                    <option value="3">Every 3rd</option>
+                    <option value="4">Every 4th</option>
+                    <option value="5">Every 5th</option>
+                    <option value="10">Every 10th</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" tabindex="-1" ng-model="friend.name">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">Auto-like</button>
+                        <button class="btn btn-secondary" type="button" ng-click="untrackFriend()">Stop liking</button>
+                    </span>
+                </div>
             </div>
         </div>
         </form>
-    </div>
-    <!-- build:js scripts/popup.js -->
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    <script src="scripts/popup.js"></script>
-    <!-- endbuild -->
+        
+        <!-- build:js scripts/popup.js -->
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/bootstrap.min.js"></script>
+        <script src="scripts/angular.min.js"></script>
+        <script src="scripts/popup.js"></script>
+        <script src="scripts/friends.service.js"></script>
+        <!-- endbuild -->
 </body>
 
 </html>
