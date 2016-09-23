@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- build:css styles/popup-vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+</head>
+
+<body>
+    <!-- build:js scripts/popup-vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <div class="row">
+        <form>
+        <progress class="progress" value="50" max="100" aria-describedby="example-caption-1"></progress>
+        <div class="col-md-12">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." tabindex="-1">
+                <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">Sometimes "like"</button>
+                <button class="btn btn-secondary" id="increase-frequency" type="button">+</button>
+                <button class="btn btn-secondary" id="decrease-frequency" type="button">-</button>
+                </span>
+            </div>
+        </div>
+        </form>
+    </div>
+    <!-- build:js scripts/popup.js -->
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/popup.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>
