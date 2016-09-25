@@ -4,7 +4,6 @@
 app.service('FriendsService', function () {
 
 		this.addFriend = function (friend) {
-			// friend.name = new RegExp(friend.name)
 
 			chrome.storage.sync.get('friends', (result) => {
 				let friends = result.friends
@@ -15,14 +14,13 @@ app.service('FriendsService', function () {
 			})
 		}
 
-		this.removeFriend = function (friendName) {
-			// let friendNameRegex = new RegExp(friendName)
+		this.removeFriend = function (friend) {
 
 			chrome.storage.sync.get('friends', (result) => {
 				let friends = result.friends
 				
 				for (let i = 0; i < friends.length; i++) {
-					if (friends[i].name === friendName) {
+					if (friends[i].name === friend.name) {
 						friends.splice(i, 1)
 						break
 					}

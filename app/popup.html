@@ -13,12 +13,12 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="popup">
+<body ng-app="popup" ng-controller="PopupCtrl">
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
-    <form ng-submit="submitFriend()" ng-controller="PopupCtrl">
+    <form ng-submit="submitFriend()">
         <div class="form-group row">
             <div class="col-md-6">
                 <label class="custom-control custom-radio">
@@ -48,12 +48,19 @@
                     <input type="text" class="form-control" tabindex="-1" ng-model="friend.name">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary" type="submit">Auto-like</button>
-                        <button class="btn btn-secondary" type="button" ng-click="untrackFriend()">Stop liking</button>
+                        <button class="btn btn-secondary" type="button" ng-click="showFriendsTracked = !showFriendsTracked">Like list</button>
                     </span>
                 </div>
             </div>
         </div>
         </form>
+        <div class="row" ng-init="showFriendsTracked = false" ng-if="showFriendsTracked">
+        <div class="col-md-12">
+            <ul>
+                <li ng-repeat="friend in friends">{{ friend.name }}  <a ng-click="untrackFriend(friend)" style="color: red">x</a></li>
+            </ul>
+        </div>
+        </div>
         
         <!-- build:js scripts/popup.js -->
         <script src="scripts/jquery.min.js"></script>

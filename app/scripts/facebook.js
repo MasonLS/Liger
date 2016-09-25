@@ -1,12 +1,12 @@
 'use strict';
 
 
-chrome.storage.sync.get(['friends', 'processedPosts'], result => {
+chrome.storage.sync.get(['friends', 'processedLikes'], result => {
 
-	const processedPosts = result.processedPosts || []
-	console.log(processedPosts)
+	const processedLikes = result.processedLikes || []
     const friends = result.friends
-    const friendNames = friends.map(friend => friend.name) 
+    const friendNamesPosts = friends.filter(friend => friend.posts).map(friend => friend.name)
+    const friendNamesComments = friends.filter(friend => friend.comments).map(friend => friend.name)
 
     $(window).on('scrollstop', () => {
 
@@ -18,17 +18,33 @@ chrome.storage.sync.get(['friends', 'processedPosts'], result => {
     		let like = $mutualParentDiv.find('.UFILikeLink')[0]
     		let timestamp = $mutualParentDiv.find('.timestampContent').parent().data('utime')
 
-    		if (friendNames.includes(friendName) && !processedPosts.includes(timestamp)) {
+    		if (friendNamesPosts.includes(friendName) && !processedLikes.includes(timestamp)) {
 
 				like.addEventListener('click', function (e) { e.preventDefault()})
 				like.click()
 				
-				console.log('liked' + friendName + 's' + 'post!')
-				processedPosts.push(timestamp)
+				console.log('liked ' + friendName + 's' + ' post!')
+				processedLikes.push(timestamp)
     		}
     	})
 
-    	chrome.storage.sync.set({'processedPosts': processedPosts})
+        $('.UFICommentContentBlock').each(function () {
+            
+            let friendName = $(this).find('.UFICommentActorName').text()
+            let timestamp = $(this).find('.livetimestamp').data('utime')
+
+            if (friendNamesComments.includes(friendName) && !processedLikes.includes(timestamp)) {
+                
+                let like = $(this).find('.UFILikeLink')[0]
+                like.addEventListener('click', function (e) { e.preventDefault()})
+                like.click()
+
+                console.log('liked ' + friendName + 's' + ' comment!')
+                processedLikes.push(timestamp)
+            }
+        })
+
+    	chrome.storage.sync.set({'processedLikes': processedLikes})
     	
     })
 
