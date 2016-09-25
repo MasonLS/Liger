@@ -28,7 +28,13 @@
   "content_scripts": [
     {
       "matches": ["*://www.facebook.com/*"],
-      "js": ["scripts/withinviewport.js", "scripts/jquery.min.js", "scripts/jquery.withinviewport.js", "scripts/facebook.js"]
+      "js": [
+        "scripts/withinviewport.js", 
+        "scripts/jquery.min.js", 
+        "scripts/jquery.withinviewport.js", 
+        "scripts/jquery.scrollstop.min.js", 
+        "scripts/facebook.js"
+      ]
     }
   ]
 }
