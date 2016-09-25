@@ -5,8 +5,16 @@ chrome.storage.sync.get(['friends', 'processedLikes'], result => {
 
 	const processedLikes = result.processedLikes || []
     const friends = result.friends
+
+    console.log(friends)
     const friendNamesPosts = friends.filter(friend => friend.posts).map(friend => friend.name)
     const friendNamesComments = friends.filter(friend => friend.comments).map(friend => friend.name)
+
+    function clickLike (like) {
+        like.addEventListener('click', function (e) { e.preventDefault()})
+        like.click()
+    }
+
 
     $(window).on('scrollstop', () => {
 
@@ -16,13 +24,20 @@ chrome.storage.sync.get(['friends', 'processedLikes'], result => {
             let timestamp = $(this).find('.timestampContent').parent().data('utime')
 
             if (friendNamesPosts.includes(friendName) && !processedLikes.includes(timestamp)) {
-            
-                let like = $(this).find('.UFILikeLink')[0]
-
-                like.addEventListener('click', function (e) { e.preventDefault()})
-                like.click()
                 
-                console.log('liked ' + friendName + 's' + ' post!')
+                let friendObj = friends.find(friend => friend.name === friendName);
+
+                friendObj.counter += 1
+
+                if (friendObj.counter % friendObj.divisor === 0) {
+                    
+                    let like = $(this).find('.UFILikeLink')[0]
+                    
+                    clickLike(like)
+                    console.log('liked ' + friendName + 's' + ' post!')
+                    
+                }
+
                 processedLikes.push(timestamp)
             }
 
@@ -35,11 +50,19 @@ chrome.storage.sync.get(['friends', 'processedLikes'], result => {
 
             if (friendNamesComments.includes(friendName) && !processedLikes.includes(timestamp)) {
                 
-                let like = $(this).find('.UFILikeLink')[0]
-                like.addEventListener('click', function (e) { e.preventDefault()})
-                like.click()
+                let friendObj = friends.find(friend => friend.name === friendName);
 
-                console.log('liked ' + friendName + 's' + ' comment!')
+                friendObj.counter += 1
+
+                if (friendObj.counter % friendObj.divisor === 0) {
+                    
+                    let like = $(this).find('.UFILikeLink')[0]
+                    
+                    clickLike(like)
+                    console.log('liked ' + friendName + 's' + ' comment!')
+                    
+                }
+                
                 processedLikes.push(timestamp)
             }
         })

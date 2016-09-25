@@ -5,6 +5,8 @@ const app =	angular.module('popup', [])
 			.controller('PopupCtrl', function ($scope, FriendsService) {
 
 				function submitFriend () {
+					$scope.friend.divisor = +$scope.friend.divisor || 1
+					$scope.friend.counter = 0
 					FriendsService.addFriend($scope.friend)
 					$scope.friends.push($scope.friend)
 					$scope.friend = null
