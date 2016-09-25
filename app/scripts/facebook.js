@@ -10,23 +10,23 @@ chrome.storage.sync.get(['friends', 'processedLikes'], result => {
 
     $(window).on('scrollstop', () => {
 
-    	$('.profileLink').each(function () {
-    		
-    		let $profileLink = $(this)
-    		let friendName = $profileLink.text()
-    		let $mutualParentDiv = $(this).parents('.userContentWrapper')
-    		let like = $mutualParentDiv.find('.UFILikeLink')[0]
-    		let timestamp = $mutualParentDiv.find('.timestampContent').parent().data('utime')
+        $('.userContentWrapper').each(function () {
+            
+            let friendName = $(this).find('.fwb a').text()
+            let timestamp = $(this).find('.timestampContent').parent().data('utime')
 
-    		if (friendNamesPosts.includes(friendName) && !processedLikes.includes(timestamp)) {
+            if (friendNamesPosts.includes(friendName) && !processedLikes.includes(timestamp)) {
+            
+                let like = $(this).find('.UFILikeLink')[0]
 
-				like.addEventListener('click', function (e) { e.preventDefault()})
-				like.click()
-				
-				console.log('liked ' + friendName + 's' + ' post!')
-				processedLikes.push(timestamp)
-    		}
-    	})
+                like.addEventListener('click', function (e) { e.preventDefault()})
+                like.click()
+                
+                console.log('liked ' + friendName + 's' + ' post!')
+                processedLikes.push(timestamp)
+            }
+
+        })
 
         $('.UFICommentContentBlock').each(function () {
             
