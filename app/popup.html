@@ -22,7 +22,7 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label class="custom-control">Every </label>
-                <input type="text" class="custom-control" tabindex="-1" ng-model="friend.divisor">
+                <input type="text" class="custom-control" tabindex="-1" placeholder="   # OF" ng-model="friend.divisor">
                 <label class="custom-control custom-radio">
                     <input type="radio" class="custom-control-input" tabindex="-1" ng-checked="friend.posts" ng-click="friend.posts = !friend.posts">
                     <span class="custom-control-indicator"></span>
@@ -33,24 +33,15 @@
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Comments</span>
                 </label>
-                <!-- <select class="custom-select" tabindex="-1" ng-model="friend.frequency">
-                    <option selected>Frequency</option>
-                    <option value="1">Every</option>
-                    <option value="2">Every 2nd</option>
-                    <option value="3">Every 3rd</option>
-                    <option value="4">Every 4th</option>
-                    <option value="5">Every 5th</option>
-                    <option value="10">Every 10th</option>
-                </select> -->
             </div>
         </div>
         <div class="form-group row">
             <div class="col-md-12">
                 <div class="input-group">
-                    <input type="text" class="form-control" tabindex="-1" ng-model="friend.name">
+                    <input type="text" class="form-control" tabindex="-1" placeholder="NAME O' FWEND" ng-model="friend.name">
                     <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="submit">Auto-like</button>
-                        <button class="btn btn-secondary" type="button" ng-click="showFriendsTracked = !showFriendsTracked">Like list</button>
+                        <button class="btn btn-secondary" type="submit" ng-disabled="!friend.posts && !friend.comments">Auto-lige</button>
+                        <button class="btn btn-secondary" type="button" ng-click="showFriendsTracked = !showFriendsTracked">Fwend list</button>
                     </span>
                 </div>
             </div>

@@ -4,8 +4,8 @@
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
   "icons": {
-    "16": "images/icon-16.png",
-    "128": "images/icon-128.png"
+    "16": "images/lion-face_24.png",
+    "128": "images/lion-face_128.png"
   },
   "default_locale": "en",
   "background": {
@@ -15,12 +15,13 @@
     ]
   },
   "permissions": [
-    "storage"
+    "storage",
+    "tabs"
   ],
   "page_action": {
     "default_icon": {
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png"
+      "19": "images/lion-face_32Orange.png",
+      "38": "images/lion-face_64Orange.png"
     },
     "default_title": "Moral Compass",
     "default_popup": "popup.html"

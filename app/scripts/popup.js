@@ -5,18 +5,24 @@ const app =	angular.module('popup', [])
 			.controller('PopupCtrl', function ($scope, FriendsService) {
 
 				function submitFriend () {
-					$scope.friend.divisor = +$scope.friend.divisor || 1
-					$scope.friend.counter = 0
-					FriendsService.addFriend($scope.friend)
-					$scope.friends.push($scope.friend)
+					let friend = $scope.friend
+					friend.divisor = +friend.divisor || 1
+					friend.counter = 0
+					FriendsService.addFriend(friend)
+					$scope.friends.push(friend)
 					$scope.friend = null
+					$scope.showFriendsTracked = true
+					chrome.runtime.sendMessage({ 'message': 'friendAdded'})
 				}
 
 				function untrackFriend (friend) {
 					FriendsService.removeFriend(friend)
 					let friends = $scope.friends
 					friends.splice(friends.indexOf(friend), 1)
+					$scope.$digest()
+					chrome.runtime.sendMessage({ 'message': 'friendRemoved'})
 				}
+
 
 				chrome.storage.sync.get('friends', result => {
 					$scope.friends = result.friends
