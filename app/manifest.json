@@ -23,7 +23,7 @@
       "19": "images/lion-face_32Orange.png",
       "38": "images/lion-face_64Orange.png"
     },
-    "default_title": "Moral Compass",
+    "default_title": "Liger",
     "default_popup": "popup.html"
   },
   "content_scripts": [

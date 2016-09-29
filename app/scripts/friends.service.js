@@ -20,8 +20,9 @@ app.service('FriendsService', function () {
 				let friends = result.friends
 				
 				for (let i = 0; i < friends.length; i++) {
-					if (friends[i].name === friend.name) {
+					if (friends[i].name.toUpperCase() === friend.name.toUpperCase()) {
 						friends.splice(i, 1)
+						console.log('FRIEND REMOVED')
 						break
 					}
 				}

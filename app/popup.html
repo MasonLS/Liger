@@ -40,7 +40,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" tabindex="-1" placeholder="NAME O' FWEND" ng-model="friend.name">
                     <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="submit" ng-disabled="!friend.posts && !friend.comments">Auto-lige</button>
+                        <button class="btn btn-secondary" type="submit" ng-disabled="!friend.name || (!friend.posts && !friend.comments)">Auto-lige</button>
                         <button class="btn btn-secondary" type="button" ng-click="showFriendsTracked = !showFriendsTracked">Fwend list</button>
                     </span>
                 </div>

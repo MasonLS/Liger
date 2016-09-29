@@ -19,7 +19,6 @@ const app =	angular.module('popup', [])
 					FriendsService.removeFriend(friend)
 					let friends = $scope.friends
 					friends.splice(friends.indexOf(friend), 1)
-					$scope.$digest()
 					chrome.runtime.sendMessage({ 'message': 'friendRemoved'})
 				}
 
